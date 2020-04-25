@@ -25,5 +25,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.json({
         message: 'welcome to express js'
-    })
-})
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is runing on http://localhost:${PORT}/`);
+}); 
