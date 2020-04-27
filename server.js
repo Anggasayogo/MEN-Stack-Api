@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+const db = require('./app/models');
+
 let whiteList = [
     'http://localhost:8081',
 ];
@@ -21,6 +23,9 @@ app.use(cors(corsOption));
 //parse request application/json x-www-form-urlencode
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// sync databse
+db.sequelize.sync();
 
 app.get('/', (req, res) => {
     res.json({
